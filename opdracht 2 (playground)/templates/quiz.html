@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The NANA Psychological Test</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --accent-pink: #ff3366;
+            --text-main: #f0f0f0;
+            --text-muted: #888888;
+            --border-color: #333333;
+        }
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            background-image: radial-gradient(circle, #251a24 0%, #121212 100%);
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            background-color: var(--container-bg);
+            border: 2px solid var(--accent-pink);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 0 25px rgba(255, 51, 102, 0.2);
+            width: 100%;
+            max-width: 700px;
+        }
+        h2 { text-transform: uppercase; letter-spacing: 2px; color: #fff; text-align: center; margin-bottom: 5px; }
+        .subtitle { color: var(--accent-pink); font-size: 0.85rem; text-align: center; margin-bottom: 30px; font-style: italic; }
+        
+        .question-block {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        .question-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-label {
+            background-color: #121212;
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .option-label:hover {
+            border-color: var(--accent-pink);
+            background-color: #251a24;
+        }
+        input[type="radio"] {
+            accent-color: var(--accent-pink);
+            margin-top: 3px;
+        }
+        .btn-submit {
+            width: 100%;
+            background-color: var(--accent-pink);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-top: 20px;
+            transition: opacity 0.2s;
+        }
+        .btn-submit:hover { opacity: 0.85; }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>The NANA Personality Test</h2>
+        <div class="subtitle">"Discover which soul from BLAST or Trapnest mirrors your psyche."</div>
+        
+        <form action="/quiz" method="POST">
+            
+            <!-- Vraag 1 -->
+            <div class="question-block">
+                <div class="question-title">1. Regarding attachment and abandonment, my core relational pattern is:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q1" value="A" required> A) Counter-dependency; I subconsciously push people away before they can leave me, guarding my absolute autonomy.</label>
+                    <label class="option-label"><input type="radio" name="q1" value="B"> B) Anxious attachment; I panic at the slightest sign of emotional withdrawal and merge my identity with my partner's.</label>
+                    <label class="option-label"><input type="radio" name="q1" value="C"> C) Secure caretaking; I stabilize others by suppressing my own needs, anchoring my self-worth in being useful.</label>
+                    <label class="option-label"><input type="radio" name="q1" value="D"> D) Fragmented vulnerability; I crave deep intimacy, yet I oscillate between clinging too fast and hiding behind a mask.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 2 -->
+            <div class="question-block">
+                <div class="question-title">2. When experiencing intense emotional pain, my primary defense mechanism is:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q2" value="A" required> A) Compartmentalization; locking the pain away and pouring all my energy into outward ambition or craft.</label>
+                    <label class="option-label"><input type="radio" name="q2" value="B"> B) Regression & Externalization; seeking immediate tactile comfort, escapism, or crying out for someone to rescue me.</label>
+                    <label class="option-label"><input type="radio" name="q2" value="C"> C) Rationalization; stepping back to analyze the situation logically to protect my ego from feeling overwhelmed.</label>
+                    <label class="option-label"><input type="radio" name="q2" value="D"> D) Emotional sublimation; channeling the inner turmoil into raw artistic expression, music, or quiet self-sacrifice.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 3 -->
+            <div class="question-block">
+                <div class="question-title">3. My internal relationship with control manifests as:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q3" value="A" required> A) Absolute rebellion against any external force trying to cage or define me.</label>
+                    <label class="option-label"><input type="radio" name="q3" value="B"> B) Total surrender to whoever holds power, trading personal agency for safety and security.</label>
+                    <label class="option-label"><input type="radio" name="q3" value="C"> C) Meticulous backstage control; manipulating variables quietly to protect the people I'm responsible for.</label>
+                    <label class="option-label"><input type="radio" name="q3" value="D"> D) Internal chaos masked by an outward compliance or an indifferent shrug.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 4 -->
+            <div class="question-block">
+                <div class="question-title">4. How do I subconsciously view my own self-worth?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q4" value="A" required> A) Conditional; I only feel valuable when I am creating, performing, or proving my strength.</label>
+                    <label class="option-label"><input type="radio" name="q4" value="B"> B) Dependent; I feel inherently empty or incomplete unless someone is actively loving me.</label>
+                    <label class="option-label"><input type="radio" name="q4" value="C"> C) Stable; my worth comes from my moral code, reliability, and emotional resilience.</label>
+                    <label class="option-label"><input type="radio" name="q4" value="D"> D) Fractured; I feel like a damaged child hiding behind a persona or a polished image.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 5 -->
+            <div class="question-block">
+                <div class="question-title">5. Underneath my social facade, my deepest existential terror is:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q5" value="A" required> A) Losing my individuality and ending up trapped, domesticated, and powerless.</label>
+                    <label class="option-label"><input type="radio" name="q5" value="B"> B) Absolute isolation; being left completely behind while everyone else moves on without me.</label>
+                    <label class="option-label"><input type="radio" name="q5" value="C"> C) Losing control of my environment and watching everything I built collapse into chaos.</label>
+                    <label class="option-label"><input type="radio" name="q5" value="D"> D) Causing collateral damage or hurting the gentle people who depend on my support.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 6 -->
+            <div class="question-block">
+                <div class="question-title">6. When processing past trauma or childhood wounds, I tend to:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q6" value="A" required> A) Brandish my scars like armor; they prove I survived on my own terms.</label>
+                    <label class="option-label"><input type="radio" name="q6" value="B"> B) Re-enact the wound in my romantic relationships, repeating cycles of idealization and heartbreak.</label>
+                    <label class="option-label"><input type="radio" name="q6" value="C"> C) Bury it under radical pragmatism and a heavy sense of adult responsibility.</label>
+                    <label class="option-label"><input type="radio" name="q6" value="D"> D) Numb the ache through substances, sensory overload, or quiet creative outlets.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 7 -->
+            <div class="question-block">
+                <div class="question-title">7. How do I navigate the tension between my public persona and my private shadow?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q7" value="A" required> A) They are deeply fused; my public edge is a direct reflection of my internal rebellion.</label>
+                    <label class="option-label"><input type="radio" name="q7" value="B"> B) There is a massive chasm; my sweet exterior hides a frantic, deeply insecure inner world.</label>
+                    <label class="option-label"><input type="radio" name="q7" value="C"> C) My persona is carefully engineered as a strategic shield to protect my vulnerable core.</label>
+                    <label class="option-label"><input type="radio" name="q7" value="D"> D) What you see is essentially what you get; I strive for emotional transparency.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 8 -->
+            <div class="question-block">
+                <div class="question-title">8. When someone offers me unconditional, stable love, my psychological reflex is:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q8" value="A" required> A) Suspicion; I test their boundaries or sabotage it because deep down I feel unworthy of it.</label>
+                    <label class="option-label"><input type="radio" name="q8" value="B"> B) Ecstasy and instant addiction; I throw all my boundaries away to consume and be consumed by it.</label>
+                    <label class="option-label"><input type="radio" name="q8" value="C"> C) Grateful acceptance, though I quietly balance it with my duties and emotional boundaries.</label>
+                    <label class="option-label"><input type="radio" name="q8" value="D"> D) Strategic containment; I appreciate the comfort, but I ensure I maintain structural power.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 9 -->
+            <div class="question-block">
+                <div class="question-title">9. My relationship with guilt and moral responsibility can be described as:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q9" value="A" required> A) Minimal; I answer only to my own fierce code of ethics, ignoring societal expectations.</label>
+                    <label class="option-label"><input type="radio" name="q9" value="B"> B) Overwhelming; I internalize every mistake and constantly feel like a burden to others.</label>
+                    <label class="option-label"><input type="radio" name="q9" value="C"> C) Pragmatic duty; I take heavy accountability for outcomes, even if it requires emotional coldness.</label>
+                    <label class="option-label"><input type="radio" name="q9" value="D"> D) Empathetic burden; I carry deep remorse if my choices inadvertently break someone's heart.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 10 -->
+            <div class="question-block">
+                <div class="question-title">10. How do I react when my autonomy or freedom is threatened?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q10" value="A" required> A) With fierce, explosive resistance; I will burn bridges rather than be possessed.</label>
+                    <label class="option-label"><input type="radio" name="q10" value="B"> B) With passive anxiety; I feel trapped, but I'm too terrified of abandonment to break free.</label>
+                    <label class="option-label"><input type="radio" name="q10" value="C"> C) By out-maneuvering the threat with calm strategy and resource control.</label>
+                    <label class="option-label"><input type="radio" name="q10" value="D"> D) By seeking compromise or quietly retreating into my own inner sanctuary.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 11 -->
+            <div class="question-block">
+                <div class="question-title">11. My psychological approach to intimacy is defined by:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q11" value="A" required> A) Intensity and fusion; wanting to tear down all walls, followed by sudden panic.</label>
+                    <label class="option-label"><input type="radio" name="q11" value="B"> B) A desperate search for a permanent home and a parental figure disguised as romance.</label>
+                    <label class="option-label"><input type="radio" name="q11" value="C"> C) Emotional containment; protecting my partner while keeping my own deepest abysses locked away.</label>
+                    <label class="option-label"><input type="radio" name="q11" value="D"> D) Gentle idealism; offering pure, uncorrupted devotion and honest companionship.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 12 -->
+            <div class="question-block">
+                <div class="question-title">12. When facing a crisis where I am powerless, I psychologically resort to:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q12" value="A" required> A) Denial and outward defiance, pretending the pain doesn't fracture me.</label>
+                    <label class="option-label"><input type="radio" name="q12" value="B"> B) Complete emotional deregulation; crying, panicking, and seeking immediate rescue.</label>
+                    <label class="option-label"><input type="radio" name="q12" value="C"> C) Hyper-vigilance; scanning every risk and taking immediate, calculated countermeasures.</label>
+                    <label class="option-label"><input type="radio" name="q12" value="D"> D) Stoic endurance; absorbing the blow silently to shield the people around me.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 13 -->
+            <div class="question-block">
+                <div class="question-title">13. How do I utilize art, music, or my primary passion in my inner life?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q13" value="A" required> A) As an existential outlet; it is the only true voice for my rage, grief, and identity.</label>
+                    <label class="option-label"><input type="radio" name="q13" value="B"> B) As an emotional mirror; a romantic soundtrack to validate my fantasies and heartbreaks.</label>
+                    <label class="option-label"><input type="radio" name="q13" value="C"> C) As a professional vehicle; a structured domain to build influence, stability, and legacy.</label>
+                    <label class="option-label"><input type="radio" name="q13" value="D"> D) As a genuine connection tool; a way to bond authentically with kindred spirits.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 14 -->
+            <div class="question-block">
+                <div class="question-title">14. What is my hidden psychological shadow (the part of myself I try hardest to hide)?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q14" value="A" required> A) A fragile, terrified child who is utterly terrified of being abandoned in the dark.</label>
+                    <label class="option-label"><input type="radio" name="q14" value="B"> B) A manipulative, cold controller who fears losing absolute dominance over life.</label>
+                    <label class="option-label"><input type="radio" name="q14" value="C"> C) A profound sense of emptiness and a feeling of being fundamentally unlovable.</label>
+                    <label class="option-label"><input type="radio" name="q14" value="D"> D) A quiet resentment from constantly carrying everyone else's emotional weight.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 15 -->
+            <div class="question-block">
+                <div class="question-title">15. How do I process jealousy within significant relationships?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q15" value="A" required> A) Through possessive pride and a volatile clash of egos.</label>
+                    <label class="option-label"><input type="radio" name="q15" value="B"> B) Through crippling self-doubt, terror of replacement, and self-blame.</label>
+                    <label class="option-label"><input type="radio" name="q15" value="C"> C) Through emotional detachment or rational boundary-setting.</label>
+                    <label class="option-label"><input type="radio" name="q15" value="D"> D) Through open communication and a desire to reassure the other person's insecurities.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 16 -->
+            <div class="question-block">
+                <div class="question-title">16. When my environment becomes toxic or overwhelming, my instinct is to:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q16" value="A" required> A) Go to war against it; fight tooth and nail to change it or escape it defiantly.</label>
+                    <label class="option-label"><input type="radio" name="q16" value="B"> B) Cling tighter to the source of toxicity because the familiarity feels safer than emptiness.</label>
+                    <label class="option-label"><input type="radio" name="q16" value="C"> C) Restructure the environment systematically or quietly orchestrate an exit strategy.</label>
+                    <label class="option-label"><input type="radio" name="q16" value="D"> D) Withdraw inward, numbing myself until the external storm passes.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 17 -->
+            <div class="question-block">
+                <div class="question-title">17. How do I view dependency on other human beings?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q17" value="A" required> A) As a dangerous weakness; to depend on someone is to give them a knife to your heart.</label>
+                    <label class="option-label"><input type="radio" name="q17" value="B"> B) As a biological necessity; I cannot psychologically survive without a host or partner.</label>
+                    <label class="option-label"><input type="radio" name="q17" value="C"> C) As a dynamic balance; it's okay to rely on trusted anchors as long as you remain stable yourself.</label>
+                    <label class="option-label"><input type="radio" name="q17" value="D"> D) As a complicated trap; I want to be depended on, but I fear becoming a burden.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 18 -->
+            <div class="question-block">
+                <div class="question-title">18. My relationship with self-sabotage is characterized by:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q18" value="A" required> A) Purposely pushing away the people who love me out of a subconscious belief that I'll eventually be left.</label>
+                    <label class="option-label"><input type="radio" name="q18" value="B"> B) Rushing headfirst into toxic dynamics because peace feels boring or unloving.</label>
+                    <label class="option-label"><input type="radio" name="q18" value="C"> C) Overworking myself into emotional burnout under the illusion of total control.</label>
+                    <label class="option-label"><input type="radio" name="q18" value="D"> D) Putting everyone else's trajectory ahead of my own until I quietly break.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 19 -->
+            <div class="question-block">
+                <div class="question-title">19. How do I construct my personal boundaries?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q19" value="A" required> A) Spikes outward; extremely sharp, keeping almost everyone at a safe emotional distance.</label>
+                    <label class="option-label"><input type="radio" name="q19" value="B"> B) Almost non-existent; my boundaries dissolve instantly for objects of my affection.</label>
+                    <label class="option-label"><input type="radio" name="q19" value="C"> C) Steel-reinforced; impenetrable logic and privacy safeguard my inner world.</label>
+                    <label class="option-label"><input type="radio" name="q19" value="D"> D) Flexible and porous; I try to accommodate others while keeping my core values intact.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 20 -->
+            <div class="question-block">
+                <div class="question-title">20. When a deep relationship shatters, my grief cycle looks like:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q20" value="A" required> A) Rage, freezing over my emotions, and a lifelong refusal to look back in weakness.</label>
+                    <label class="option-label"><input type="radio" name="q20" value="B"> B) Complete ego-dismantling, frantic attempts at reconciliation, and idealizing a fresh start.</label>
+                    <label class="option-label"><input type="radio" name="q20" value="C"> C) Clinical processing; burying the grief under intense workflow and emotional stoicism.</label>
+                    <label class="option-label"><input type="radio" name="q20" value="D"> D) Melancholic acceptance; nursing a quiet, permanent ache while continuing to support others.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 21 -->
+            <div class="question-block">
+                <div class="question-title">21. How do I perceive my own agency in the grand scheme of life?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q21" value="A" required> A) Fate is a battlefield, and I am a warrior carving out my own defiant path.</label>
+                    <label class="option-label"><input type="radio" name="q21" value="B"> B) Life happens to me; I am a leaf blown by the winds of romance and circumstance.</label>
+                    <label class="option-label"><input type="radio" name="q21" value="C"> C) I engineer my own outcomes through calculated strategy, power, and discipline.</label>
+                    <label class="option-label"><input type="radio" name="q21" value="D"> D) Life is a shared journey where our choices ripple into the lives of the people we love.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 22 -->
+            <div class="question-block">
+                <div class="question-title">22. What triggers my most intense psychological defense (anger or numbness)?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q22" value="A" required> A) Being patronized, pitied, or having my independence undermined.</label>
+                    <label class="option-label"><input type="radio" name="q22" value="B"> B) Being ignored, invalidated, or perceived as a secondary priority.</label>
+                    <label class="option-label"><input type="radio" name="q22" value="C"> C) Incompetence, structural chaos, or threats to my established security network.</label>
+                    <label class="option-label"><input type="radio" name="q22" value="D"> D) Injustice, cruelty, or witnessing someone I care about suffer needlessly.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 23 -->
+            <div class="question-block">
+                <div class="question-title">23. How do I handle the concept of 'home' or a safe space?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q23" value="A" required> A) Home is anywhere I can play my music, smoke, and feel sovereign over my own soul.</label>
+                    <label class="option-label"><input type="radio" name="q23" value="B"> B) Home is a physical person; wherever my lover is, that is where I anchor my existence.</label>
+                    <label class="option-label"><input type="radio" name="q23" value="C"> C) Home is a secure, impenetrable fortress where external chaos cannot touch me.</label>
+                    <label class="option-label"><input type="radio" name="q23" value="D"> D) Home is a warm room filled with trusted friends, laughter, and mutual honesty.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 24 -->
+            <div class="question-block">
+                <div class="question-title">24. When looking at my past choices, my dominant psychological lens is:</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q24" value="A" required> A) Defiant pride; every scar and mistake was necessary to forge my raw identity.</label>
+                    <label class="option-label"><input type="radio" name="q24" value="B"> B) Painful nostalgia; wishing I had been stronger, wiser, and less driven by panic.</label>
+                    <label class="option-label"><input type="radio" name="q24" value="C"> C) Strategic evaluation; assessing ROI, learning the system, and optimizing the future.</label>
+                    <label class="option-label"><input type="radio" name="q24" value="D"> D) Tender acceptance; honoring the growth and the deep bonds built along the way.</label>
+                </div>
+            </div>
+
+            <!-- Vraag 25 -->
+            <div class="question-block">
+                <div class="question-title">25. Ultimately, what is the core driver of my existence?</div>
+                <div class="options-group">
+                    <label class="option-label"><input type="radio" name="q25" value="A" required> A) The fierce demand to be authentic, free, and uncompromised by the world.</label>
+                    <label class="option-label"><input type="radio" name="q25" value="B"> B) The desperate, beautiful pursuit of being truly, unconditionally loved.</label>
+                    <label class="option-label"><input type="radio" name="q25" value="C"> C) The absolute need for mastery, protection, and structural stability.</label>
+                    <label class="option-label"><input type="radio" name="q25" value="D"> D) The quiet fulfillment of nurturing genuine connections and creative expression.</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit Assessment</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NANA Quiz - Home</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --accent-pink: #ff3366;
+            --text-main: #f0f0f0;
+            --text-muted: #888888;
+            --border-color: #333333;
+        }
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(circle, #251a24 0%, #121212 100%);
+        }
+        .home-card {
+            background-color: var(--container-bg);
+            border: 2px solid var(--accent-pink);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 { text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; color: #fff; }
+        .subtitle { color: var(--accent-pink); font-size: 0.85rem; margin-bottom: 30px; font-style: italic; }
+        .menu-links { display: flex; flex-direction: column; gap: 12px; }
+        .btn-link {
+            background-color: #121212; color: var(--text-main); border: 1px solid var(--border-color);
+            padding: 12px; text-decoration: none; font-weight: bold; text-transform: uppercase;
+            border-radius: 2px; transition: 0.2s; display: block;
+        }
+        .btn-link:hover { border-color: var(--accent-pink); background-color: #251a24; color: var(--accent-pink); }
+        .btn-primary { background-color: var(--accent-pink); color: white; border: none; }
+        .btn-primary:hover { background-color: #ff1a4d; color: white; }
+    </style>
+</head>
+<body>
+    <div class="home-card">
+        <h1>NANA Quiz</h1>
+        <div class="subtitle">"Loving someone is never a waste."</div>
+        
+        <div class="menu-links">
+           <a href="/register" class="btn-link btn-primary">Start de Quiz</a>              
+            <a href="/login" class="btn-link">Inloggen</a>
+            <a href="/register" class="btn-link">Registreren</a>
+            <a href="/profile" class="btn-link">Mijn Profiel</a>
+        </div>
+    </div>
+</body>
+</html>

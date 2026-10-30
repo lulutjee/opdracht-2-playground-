@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - NANA Quiz</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --accent-pink: #ff3366;
+            --text-main: #f0f0f0;
+            --text-muted: #888888;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace; /* Geeft een rauwe, alternatieve vibe */
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(circle, #251a24 0%, #121212 100%);
+        }
+
+        .login-card {
+            background-color: var(--container-bg);
+            border: 2px solid var(--accent-pink);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.2);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Subtiel punk/manga detail: een 'scheur' of label-effect */
+        .login-card::before {
+            content: "BLACK STONES / TRAPNEST VIBES";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-pink);
+            color: #fff;
+            font-size: 0.65rem;
+            padding: 2px 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            color: var(--text-main);
+            margin-bottom: 5px;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: var(--accent-pink);
+            font-size: 0.85rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background-color: #121212;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 1rem;
+            box-sizing: border-box;
+            border-radius: 2px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--accent-pink);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--accent-pink);
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-top: 10px;
+            transition: background 0.2s, opacity 0.2s;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.85;
+            background-color: #ff1a4d;
+        }
+
+        .footer-links {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links a {
+            color: var(--accent-pink);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>Login</h2>
+        <div class="subtitle">"Hey nana!"</div>
+<form action="/login" method="POST">
+    <div class="input-group">
+        <label for="username">Gebruikersnaam</label>
+        <input type="text" id="username" name="username" placeholder="Bijv. Nana Osaki">
+    </div>
+
+    <div class="input-group">
+        <label for="password">Wachtwoord</label>
+        <input type="password" id="password" name="password" placeholder="••••••••">
+    </div>
+
+    <button type="submit" class="btn-submit">Inloggen</button>
+</form>
+
+<div class="footer-links">
+    Nog geen account? <a href="/register">Registreer hier</a>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profiel - NANA Quiz</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --accent-pink: #ff3366;
+            --text-main: #f0f0f0;
+            --text-muted: #888888;
+            --border-color: #333333;
+        }
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(circle, #251a24 0%, #121212 100%);
+        }
+        .profile-card {
+            background-color: var(--container-bg);
+            border: 2px solid var(--accent-pink);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 { text-transform: uppercase; letter-spacing: 2px; }
+        .stats { margin: 20px 0; color: var(--text-muted); font-size: 0.9rem; }
+        .stats span { color: var(--accent-pink); font-weight: bold; }
+        .btn-back {
+            display: inline-block; background-color: var(--accent-pink); color: white; text-decoration: none;
+            padding: 10px 20px; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; border-radius: 2px; margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+   <div class="profile-card">
+    <h2>Jouw Profiel</h2>
+    
+    <!-- Laat de naam van de ingelogde gebruiker zien -->
+    <p style="color: var(--accent-pink);">Welkom, {{ user.username }}!</p>
+    
+    {% if latest %}
+        <!-- Als de gebruiker al een quiz heeft gedaan, toon het resultaat -->
+        <p style="font-style: italic;">Jouw meest recente karakter: "{{ latest.name }}"</p>
+        <div class="stats">
+            <p>Meest voorkomende match: <span>{{ most_common }}</span></p>
+            <p>Voltooide quizten: <span>{{ history|length }}</span></p>
+        </div>
+    {% else %}
+        <!-- Als de gebruiker nog geen quiz heeft gedaan -->
+        <p style="font-style: italic;">Je hebt nog geen quiz ingevuld!</p>
+        <div class="stats">
+            <p>Voltooide quizten: <span>0</span></p>
+        </div>
+        <br>
+        <a href="{{ url_for('quiz') }}" class="btn">Start de Quiz!</a>
+    {% endif %}
+</div>

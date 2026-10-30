@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jouw Resultaat - NANA Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --accent-pink: #ff3366;
+            --text-main: #f0f0f0;
+            --text-muted: #888888;
+            --border-color: #333333;
+        }
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(circle, #251a24 0%, #121212 100%);
+            padding: 20px;
+        }
+        .result-card {
+            background-color: var(--container-bg);
+            border: 2px solid var(--accent-pink);
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 0 0 25px rgba(255, 51, 102, 0.3);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        h2 { text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 5px; font-size: 1.1rem; }
+        
+        .character-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-pink);
+            margin: 15px auto;
+            box-shadow: 0 0 15px rgba(255, 51, 102, 0.4);
+            display: block;
+        }
+
+        .character-name {
+            font-size: 1.8rem;
+            color: var(--accent-pink);
+            margin: 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .character-desc {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 15px 0 25px 0;
+            padding: 0 15px;
+            font-style: italic;
+        }
+
+        .chart-container {
+            position: relative;
+            margin: 20px auto;
+            height: 250px;
+            width: 100%;
+            max-width: 300px;
+        }
+        .breakdown {
+            margin-top: 20px;
+            text-align: left;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            max-height: 140px;
+            overflow-y: auto;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+        }
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .breakdown-item span { color: var(--text-main); }
+        .btn-home {
+            background-color: var(--accent-pink);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 2px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: opacity 0.2s;
+        }
+        .btn-home:hover { opacity: 0.85; }
+    </style>
+</head>
+<body>
+    <div class="result-card">
+        <h2>Your Primary NANA Match</h2>
+        
+        <!-- Karakter Afbeelding gekoppeld aan de map 'nanafotos' -->
+       <img src="{{ url_for('static', filename="nana fotos/" + char_info.image) }}" alt="{{ char_info.name }}" class="character-img" onerror="this.src='https://via.placeholder.com/130?text=NANA'">
+
+        <div class="character-name">{{ char_info.name }}</div>
+        
+        <!-- Psychologische uitleg -->
+        <div class="character-desc">
+            "{{ char_info.description }}"
+        </div>
+        
+        <!-- Cirkeldiagram Canvas -->
+        <div class="chart-container">
+            <canvas id="nanaChart"></canvas>
+        </div>
+
+        <!-- Overzicht percentages -->
+        <div class="breakdown">
+            <p style="text-transform: uppercase; font-weight: bold; color: var(--accent-pink); margin-bottom: 8px;">Full Personality Breakdown:</p>
+            {% for char, pct in sorted_scores %}
+            <div class="breakdown-item">
+                <span>{{ char.capitalize() }}</span>
+                <span>{{ pct }}%</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="/" class="btn-home">Back to Home</a>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('nanaChart').getContext('2d');
+        const sortedData = JSON.parse('{{ sorted_scores | tojson | safe }}');
+        
+        const labels = sortedData.map(item => item[0].charAt(0).toUpperCase() + item[0].slice(1));
+        const dataValues = sortedData.map(item => item[1]);
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: dataValues,
+                    backgroundColor: [
+                        '#ff3366', '#ff6699', '#cc0044', '#990033', 
+                        '#444444', '#666666', '#888888', '#222222', 
+                        '#aa2255', '#cc3366'
+                    ],
+                    borderColor: '#121212',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

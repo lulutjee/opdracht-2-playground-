@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registreren - NANA Quiz</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --container-bg: #1e1e1e;
+            --accent-pink: #ff3366;
+            --text-main: #f0f0f0;
+            --text-muted: #888888;
+            --border-color: #333333;
+        }
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(circle, #251a24 0%, #121212 100%);
+        }
+        .card {
+            background-color: var(--container-bg);
+            border: 2px solid var(--accent-pink);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.2);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+        h2 { text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; color: #fff; }
+        .subtitle { color: var(--accent-pink); font-size: 0.85rem; margin-bottom: 25px; font-style: italic; }
+        .input-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; }
+        input {
+            width: 100%; padding: 12px; background-color: #121212; border: 1px solid var(--border-color);
+            color: var(--text-main); font-size: 1rem; box-sizing: border-box; border-radius: 2px; outline: none;
+        }
+        input:focus { border-color: var(--accent-pink); }
+        .btn-submit {
+            width: 100%; background-color: var(--accent-pink); color: white; border: none;
+            padding: 12px; font-size: 1rem; font-weight: bold; text-transform: uppercase; cursor: pointer; margin-top: 10px;
+            transition: opacity 0.2s;
+        }
+        .btn-submit:hover { opacity: 0.85; }
+        .footer-links { margin-top: 20px; font-size: 0.8rem; color: var(--text-muted); }
+        .footer-links a { color: var(--accent-pink); text-decoration: none; }
+        .footer-links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Register</h2>
+        <div class="subtitle">"You know how I believe in things like fate?"</div>
+        
+        <!-- Het formulier stuurt data via POST naar /register -->
+        <form action="/register" method="POST">
+            <div class="input-group">
+                <label>Gebruikersnaam</label>
+                <input type="text" name="username" required placeholder="Bijv. Nana Osaki">
+            </div>
+            <div class="input-group">
+                <label>E-mailadres</label>
+                <input type="email" name="email" required placeholder="nana@blast.com">
+            </div>
+            <div class="input-group">
+                <label>Wachtwoord</label>
+                <input type="password" name="password" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn-submit">Account Aanmaken</button>
+        </form>
+
+        <div class="footer-links">
+            Al een account? <a href="/login">Log hier in</a>
+        </div>
+    </div>
+</body>
+</html>
